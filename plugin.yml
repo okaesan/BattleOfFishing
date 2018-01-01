@@ -1,0 +1,9 @@
+name: BattleOfFishing
+main: com.plugin.ftb.bof.BattleOfFishing
+version: 1.0.0
+commands:
+  bof:
+    description: This is a BattleOfFishing command.
+    usage:  /<command> <check|reset>
+    permission: battleoffishing.command
+    
