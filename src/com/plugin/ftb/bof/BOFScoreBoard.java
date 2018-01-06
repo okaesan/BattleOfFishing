@@ -19,7 +19,7 @@ public class BOFScoreBoard {
 	static int topFive = 1;
 
 	public static void setBoard(List<Entry<UUID, Integer>> sortPoint) {
-		HashMap<UUID, Integer> pointFish = BattleOfFishing.pointFish;
+		HashMap<UUID, Integer> gamePoint = BattleOfFishing.gamePoint;
 		int time = BattleOfFishing.gameTime;
 
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
@@ -46,7 +46,7 @@ public class BOFScoreBoard {
 		obj.getScore("").setScore(0);
 		obj.getScore("残り時間: " + time).setScore(-1);
 
-		for(Entry<UUID, Integer> entry : pointFish.entrySet()){
+		for(Entry<UUID, Integer> entry : gamePoint.entrySet()){
 			if(Bukkit.getPlayer(entry.getKey()).isOnline() == true){
 				// スコアボードの表示
 				Player player = (Player) Bukkit.getPlayer(entry.getKey());

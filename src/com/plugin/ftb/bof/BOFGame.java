@@ -18,7 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class BOFGame {
 
 	static BattleOfFishing bof = BattleOfFishing.bof;
-	static String titleBOF = BattleOfFishing.titleBOF;
+	static String TITLE_BOF = BattleOfFishing.TITLE_BOF;
 
 	// top5をスコアボードに表示する際に使用
 	static int topFive = 1;
@@ -36,7 +36,7 @@ public class BOFGame {
 				ItemStack rod = new ItemStack(Material.FISHING_ROD, 1);
 				rod.getItemMeta().setUnbreakable(true);
 
-				BattleOfFishing.pointFish.put(player.getUniqueId(), 0);
+				BattleOfFishing.gamePoint.put(player.getUniqueId(), 0);
 				player.getInventory().clear();
 				player.getInventory().addItem(rod);
 				player.setHealth(20);
@@ -48,16 +48,16 @@ public class BOFGame {
 		}
 
 		// スコアボードの設定
-		sortPoint = new ArrayList<Entry<UUID, Integer>>(BattleOfFishing.pointFish.entrySet());
+		sortPoint = new ArrayList<Entry<UUID, Integer>>(BattleOfFishing.gamePoint.entrySet());
 		BOFScoreBoard.setBoard(sortPoint);
 
-		Bukkit.broadcastMessage(titleBOF + "ゲーム開始");
+		Bukkit.broadcastMessage(TITLE_BOF + "ゲーム開始");
 
 		new BukkitRunnable(){
 			@Override
 			public void run() {
 				// ポイントを昇順にソート(コードの内容は理解してないからとりあえずの状態)
-				sortPoint = new ArrayList<Entry<UUID, Integer>>(BattleOfFishing.pointFish.entrySet());
+				sortPoint = new ArrayList<Entry<UUID, Integer>>(BattleOfFishing.gamePoint.entrySet());
 				Collections.sort(sortPoint, new Comparator<Entry<UUID, Integer>>() {
 					public int compare(Entry<UUID, Integer> obj1, Entry<UUID, Integer> obj2) {
 						return obj1.getValue().compareTo(obj2.getValue());
@@ -77,7 +77,7 @@ public class BOFGame {
 	}
 
 	public static void finishGame() {
-		Bukkit.broadcastMessage(titleBOF + "ゲーム終了");
+		Bukkit.broadcastMessage(TITLE_BOF + "ゲーム終了");
 
 		Bukkit.broadcastMessage("トップ5");
 		for(Entry<UUID, Integer> entry : sortPoint) {

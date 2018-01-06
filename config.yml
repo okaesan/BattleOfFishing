@@ -1,1 +1,8 @@
-GameTime: 30
+GameTime: 80
+Point:
+  RAW_FISH_0: 1
+  RAW_FISH_1: 2
+  RAW_FISH_2: 3
+  RAW_FISH_3: 4
+  BONE: 30
+  SADDLE: 100

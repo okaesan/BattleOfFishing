@@ -35,8 +35,10 @@ public class BOFCommand implements CommandExecutor {
 			}
 			return true;
 
-		default:
-
+		case "reload": // コンフィグのリロード
+			// コンフィグのリロード
+			BOFConfig.readConfig();
+			return true;
 		}
 
 		return false;

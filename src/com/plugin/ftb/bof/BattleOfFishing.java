@@ -14,13 +14,15 @@ public class BattleOfFishing extends JavaPlugin {
 
 	public static BattleOfFishing bof;
 
-	//残り時間
+	// 残り時間
 	public static int gameTime = -1;
-	//ポイント
-	public static HashMap<UUID, Integer> pointFish = new HashMap<UUID, Integer>();
+	// 釣った物のポイント
+	public static HashMap<String, Integer> fishPoint = new HashMap<String, Integer>();
+	// ゲーム中のポイント
+	public static HashMap<UUID, Integer> gamePoint = new HashMap<UUID, Integer>();
 
 	// [BattleOfFishing]
-	public static String titleBOF = "[" + ChatColor.BOLD + ChatColor.AQUA + "BoF" + ChatColor.RESET + "]";
+	public static final String TITLE_BOF = "[" + ChatColor.BOLD + ChatColor.AQUA + "BoF" + ChatColor.RESET + "]";
 
 	@Override
 	public void onEnable() {
@@ -36,6 +38,8 @@ public class BattleOfFishing extends JavaPlugin {
 
 		// コンフィグの書き出し
 		this.saveDefaultConfig();
+		// コンフィグのリロード
+		BOFConfig.readConfig();
 	}
 
 	@Override
@@ -45,7 +49,8 @@ public class BattleOfFishing extends JavaPlugin {
 
 	public static void resetVariable() {
 		gameTime = -1;
-		pointFish.clear();
+		gamePoint.clear();
+		fishPoint.clear();
 
 		for(OfflinePlayer offlinePlayer : Bukkit.getOfflinePlayers()){
 			if(offlinePlayer.isOnline() == true){
